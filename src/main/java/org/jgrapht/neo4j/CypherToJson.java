@@ -33,11 +33,23 @@ import com.sun.jersey.api.client.ClientResponse;
 import com.sun.jersey.api.client.WebResource;
 
 /**
- * Executes a Cypher on a Neo4j server and returns result as JSON string or 
+ * Executes a Cypher query on a Neo4j server and returns result as JSON string or 
  * json-simple object.
+ * 
+ * Getting started:
+ * 
+ * CypherToJson executer = new CypherToJson();
+ * executer.setHost(NEO4J_SERVER);
+ * executer.execute("MATCH n-[r]-() RETURN n,r");
+ * String jsonString = executer.getJsonString();
+ * org.json.simple.JSONObject json = executer.getJson();
+ * 
+ * To execute a query on Neo4j the REST api is used. REST calls a executed 
+ * by Jersey client. JSON results are returned as json-simple objects.
  * 
  * @see http://neo4j.com/
  * @see http://neo4j.com/docs/stable/cypher-query-lang.html
+ * @see https://jersey.java.net/
  * @see https://code.google.com/p/json-simple/
  * @author Daniel Murygin <dm[at]sernet[dot]de>
  */
@@ -48,10 +60,16 @@ public class CypherToJson {
     public static String HTTPS_PROTOCOL = "http";
     public static String HTTP_PROTOCOL = "http";
     public static String DEFAULT_PROTOCOL = HTTP_PROTOCOL;
+    
     public static String DEFAULT_HOST = "localhost";
     public static String DEFAULT_PORT = "7474";
     public static String DEFAULT_PATH = "/db/data/transaction/commit";
     public static String DEFAULT_QUERY = "MATCH n-[r]-() RETURN n,r";
+    
+    public static String RESULT_DATA_CONTENT_REST = "REST";
+    public static String RESULT_DATA_CONTENT_ROW = "row";
+    public static String RESULT_DATA_CONTENT_GRAPH = "graph";
+    public static String[] DEFAULT_RESULT_DATA_CONTENTS = {RESULT_DATA_CONTENT_ROW,RESULT_DATA_CONTENT_GRAPH};
 
     public String protocol = DEFAULT_PROTOCOL;
     public String host = DEFAULT_HOST;
@@ -59,6 +77,7 @@ public class CypherToJson {
     public String path = DEFAULT_PATH;
 
     public String query = DEFAULT_QUERY;
+    public String[] resultDataContents = DEFAULT_RESULT_DATA_CONTENTS;
     
     private String jsonString;
     private JSONObject json;
@@ -68,11 +87,24 @@ public class CypherToJson {
         executer.execute();
     }
     
-    public void execute(String query) {
+    /**
+     * Executes a Cypher query.
+     * 
+     * @param query a Cypher query
+     * @return The result of the query as simple-json object
+     */
+    public JSONObject execute(String query) {
         setQuery(query);
         execute();
+        return getJson();
     }
 
+    
+    /**
+     * Executes a Cypher query.
+     * Call setQuery(..) before to set the query.
+     * Call getJsonString() or getJson() to return the result.
+     */
     public void execute() {
         ClientResponse response = excecuteRequest();
         setJsonString(response.getEntity(String.class));     
@@ -108,7 +140,7 @@ public class CypherToJson {
      * {"statements" : [
      *   {
      *     "statement" : "<query>",
-     *     "resultDataContents" : [ "graph" ]
+     *     "resultDataContents" : [ "<resultDataContents>" ]
      *   } 
      * ]}
      * 
@@ -119,7 +151,9 @@ public class CypherToJson {
         JSONObject statement = new JSONObject();
         statement.put("statement", getQuery());
         JSONArray resultDataContents = new JSONArray();
-        resultDataContents.add("graph");
+        for (String content : getResultDataContents()) {
+            resultDataContents.add(content);
+        }       
         statement.put("resultDataContents", resultDataContents);
         JSONArray statements = new JSONArray();
         statements.add(statement);
@@ -140,19 +174,34 @@ public class CypherToJson {
         this.query = query;
     }
 
+    public String[] getResultDataContents() {
+        return resultDataContents;
+    }
+
+    public void setResultDataContents(String... resultDataContent) {
+        this.resultDataContents = resultDataContent;
+    }
+
+    /**
+     * @return The result of the cypher query as JSON string
+     */
     public String getJsonString() {
         return jsonString;
     }
 
-    public void setJsonString(String jsonString) {
+    private void setJsonString(String jsonString) {
         this.jsonString = jsonString;
     }
 
+    /**
+     * @return The result of the cypher query as json-simple object.
+     * @see https://code.google.com/p/json-simple/
+     */
     public JSONObject getJson() {
         return json;
     }
 
-    public void setJson(JSONObject json) {
+    private void setJson(JSONObject json) {
         this.json = json;
     }
 
