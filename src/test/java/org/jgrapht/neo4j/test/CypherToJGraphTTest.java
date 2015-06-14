@@ -19,7 +19,7 @@
  ******************************************************************************/
 package org.jgrapht.neo4j.test;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 import java.util.Arrays;
 import java.util.Iterator;
@@ -28,8 +28,8 @@ import java.util.Set;
 
 import org.jgrapht.DirectedGraph;
 import org.jgrapht.alg.DijkstraShortestPath;
-import org.jgrapht.neo4j.CypherToJson;
 import org.jgrapht.neo4j.CypherToJGraphT;
+import org.jgrapht.neo4j.CypherToJson;
 import org.jgrapht.neo4j.Edge;
 import org.jgrapht.neo4j.Node;
 import org.junit.Test;

@@ -34,6 +34,13 @@ import org.slf4j.LoggerFactory;
 /**
  * Executes a Cypher on a Neo4j server and returns result as JGraphT graph object.
  * 
+ * Getting started:
+ * 
+ * CypherToJGraphT graphLoader = new CypherToJGraphT();
+ * DirectedGraph<Node, Edge> graph = graphLoader.execute("MATCH n-[r]-() RETURN n,r");
+ * 
+ * Queries are executed by class {@link CypherToJson}.
+ * 
  * @see http://neo4j.com/
  * @see http://neo4j.com/docs/stable/cypher-query-lang.html
  * @see http://jgrapht.org/
@@ -51,10 +58,6 @@ public class CypherToJGraphT {
 
     private DirectedGraph<Node, Edge> graph;
     private Map<String, Node> nodeMap;
-    
-    public DirectedGraph<Node, Edge> getGraph() {
-        return graph;
-    }
        
     public CypherToJGraphT() {
         super();
@@ -66,12 +69,23 @@ public class CypherToJGraphT {
         executer.execute();
     }
     
+    /**
+     * Executes a Cypher query.
+     * 
+     * @param query a Cypher query
+     * @return The result of the query as JGraphT graph
+     */
     public DirectedGraph<Node, Edge> execute(String query) {
         setQuery(query);
         execute();
         return getGraph();
     }
     
+    /**
+     * Executes a Cypher query.
+     * Call setQuery(..) before to set the query. 
+     * Call getGraph() to return the resukt.
+     */
     public void execute() {
         nodeMap = new Hashtable<String, Node>();
         CypherToJson executer = createCypherToJson();
@@ -159,6 +173,24 @@ public class CypherToJGraphT {
             }
         }
     }
+
+    private CypherToJson createCypherToJson() {
+        CypherToJson executer = new CypherToJson();
+        executer.setHost(getHost());
+        executer.setPath(getPath());
+        executer.setPort(getPort());
+        executer.setProtocol(getProtocol());
+        executer.setQuery(getQuery());
+        executer.setResultDataContents(CypherToJson.RESULT_DATA_CONTENT_GRAPH);
+        return executer;
+    }
+    
+    /**
+     * @return The result of a query as JGraphT graph
+     */
+    public DirectedGraph<Node, Edge> getGraph() {
+        return graph;
+    }
     
     private void logNode(Node node, boolean added) {
         if (LOG.isInfoEnabled()) {
@@ -178,16 +210,6 @@ public class CypherToJGraphT {
                 LOG.debug("Edge exists: " + edge);
             }
         }
-    }
-
-    private CypherToJson createCypherToJson() {
-        CypherToJson executer = new CypherToJson();
-        executer.setHost(getHost());
-        executer.setPath(getPath());
-        executer.setPort(getPort());
-        executer.setProtocol(getProtocol());
-        executer.setQuery(getQuery());
-        return executer;
     }
 
     public String getQuery() {
