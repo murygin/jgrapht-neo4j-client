@@ -1,0 +1,5 @@
+eclipse.preferences.version=1
+extraProperties=
+projectKey=org.murygin\:jgrapht-neo4j-client
+serverUrl=http\://bob.sernet.private\:9000
+version=2
