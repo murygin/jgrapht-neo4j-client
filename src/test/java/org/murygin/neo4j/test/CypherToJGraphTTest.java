@@ -17,7 +17,7 @@
  * Contributors:
  *     Daniel Murygin <dm[at]sernet[dot]de> - initial API and implementation
  ******************************************************************************/
-package org.jgrapht.neo4j.test;
+package org.murygin.neo4j.test;
 
 import static org.junit.Assert.assertTrue;
 
@@ -28,11 +28,11 @@ import java.util.Set;
 
 import org.jgrapht.DirectedGraph;
 import org.jgrapht.alg.DijkstraShortestPath;
-import org.jgrapht.neo4j.CypherToJGraphT;
-import org.jgrapht.neo4j.CypherToJson;
-import org.jgrapht.neo4j.Edge;
-import org.jgrapht.neo4j.Node;
 import org.junit.Test;
+import org.murygin.neo4j.CypherToJGraphT;
+import org.murygin.neo4j.CypherToJson;
+import org.murygin.neo4j.Edge;
+import org.murygin.neo4j.Node;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

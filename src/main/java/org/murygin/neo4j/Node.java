@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2015 Daniel Murygin.
+ * Copyright (c) 2015 DanSiel Murygin.
  *
  * This program is free software: you can redistribute it and/or 
  * modify it under the terms of the GNU Lesser General Public License 
@@ -17,53 +17,54 @@
  * Contributors:
  *     Daniel Murygin <dm[at]sernet[dot]de> - initial API and implementation
  ******************************************************************************/
-package org.jgrapht.neo4j;
+package org.murygin.neo4j;
 
+import java.util.Hashtable;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 
 /**
  * @author Daniel Murygin <dm[at]sernet[dot]de>
  */
-public class Edge implements IPropertyContainer {
-    
-    private Node sourceNode;
-    private Node targetNode; 
-    private String type;
+public class Node implements IPropertyContainer {
+
+    private String id;
+    private List<String> labels;
     private Map<String, String> properties;
     
-    public Edge(Node sourceNode, Node targetNode, String type) {
+    public Node(String id) {
         super();
-        this.sourceNode = sourceNode;
-        this.targetNode = targetNode;
-        this.type = type;
+        this.id = id;
+        labels = new LinkedList<String>();
+        properties = new Hashtable<String, String>();
     }
     
-    public Node getSourceNode() {
-        return sourceNode;
-    }
-    public void setSourceNode(Node sourceNode) {
-        this.sourceNode = sourceNode;
-    }
-    
-    public Node getTargetNode() {
-        return targetNode;
-    }
-    public void setTargetNode(Node targetNode) {
-        this.targetNode = targetNode;
-    }
-    
-    public String getType() {
-        return type;
-    }
-    public void setType(String type) {
-        this.type = type;
+    public void addLabel(String label) {
+        labels.add(label);
     }
     
     public void addProperty(String key, String value) {
         properties.put(key, value);
     }
+    
+    public String getId() {
+        return id;
+    }
+    public void setId(String id) {
+        this.id = id;
+    }
+    public List<String> getLabels() {
+        return labels;
+    }
+    public void setLabels(List<String> labels) {
+        this.labels = labels;
+    }
     public Map<String, String> getProperties() {
         return properties;
+    }
+    public String getProperty(String key) {
+        return getProperties().get(key);
     }
     public void setProperties(Map<String, String> properties) {
         this.properties = properties;
@@ -73,9 +74,7 @@ public class Edge implements IPropertyContainer {
     public int hashCode() {
         final int prime = 31;
         int result = 1;
-        result = prime * result + ((sourceNode == null) ? 0 : sourceNode.hashCode());
-        result = prime * result + ((targetNode == null) ? 0 : targetNode.hashCode());
-        result = prime * result + ((type == null) ? 0 : type.hashCode());
+        result = prime * result + ((id == null) ? 0 : id.hashCode());
         return result;
     }
 
@@ -87,30 +86,35 @@ public class Edge implements IPropertyContainer {
             return false;
         if (getClass() != obj.getClass())
             return false;
-        Edge other = (Edge) obj;
-        if (sourceNode == null) {
-            if (other.sourceNode != null)
+        Node other = (Node) obj;
+        if (id == null) {
+            if (other.id != null)
                 return false;
-        } else if (!sourceNode.equals(other.sourceNode))
-            return false;
-        if (targetNode == null) {
-            if (other.targetNode != null)
-                return false;
-        } else if (!targetNode.equals(other.targetNode))
-            return false;
-        if (type == null) {
-            if (other.type != null)
-                return false;
-        } else if (!type.equals(other.type))
+        } else if (!id.equals(other.id))
             return false;
         return true;
     }
+    
     
     /* (non-Javadoc)
      * @see java.lang.Object#toString()
      */
     @Override
     public String toString() {
-        return getSourceNode() + "->" + getTargetNode() + ", " + getType();
+        StringBuilder sb = new StringBuilder();
+        sb.append(getId());
+        if(!labels.isEmpty()) {
+            sb.append(":");
+        }
+        boolean first = true;
+        for (String label : labels) {
+            if(!first) {
+                sb.append(",");
+            } else {
+                first = false;
+            }
+            sb.append(label);  
+        }
+        return sb.toString();
     }
 }

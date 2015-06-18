@@ -17,7 +17,7 @@
  * Contributors:
  *     Daniel Murygin <dm[at]sernet[dot]de> - initial API and implementation
  ******************************************************************************/
-package org.jgrapht.neo4j;
+package org.murygin.neo4j;
 
 import java.util.Map;
 
