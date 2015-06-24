@@ -22,6 +22,9 @@ package org.murygin.neo4j;
 import java.util.Map;
 
 /**
+ * Interface for a data model class which contains
+ * property such as nodes and edges.
+ * 
  * @author Daniel Murygin daniel.murygin@gmail.com
  */
 public interface IPropertyContainer {

@@ -26,6 +26,9 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 /**
+ * Helper class to get data from the JSON result
+ * of a Neo4j cypher query.
+ * 
  * @author Daniel Murygin daniel.murygin@gmail.com
  */
 @SuppressWarnings("rawtypes")

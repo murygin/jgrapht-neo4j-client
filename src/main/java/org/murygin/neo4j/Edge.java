@@ -22,6 +22,10 @@ package org.murygin.neo4j;
 import java.util.Map;
 
 /**
+ * Data model class - An edge is the JGraphT generic edge type 
+ * of the cypher query result graph. It contains all data from 
+ * a Neo4j edge/relation. 
+ * 
  * @author Daniel Murygin daniel.murygin@gmail.com
  */
 public class Edge implements IPropertyContainer {

@@ -25,6 +25,10 @@ import java.util.List;
 import java.util.Map;
 
 /**
+ * Data model class - A node is the JGraphT generic node type 
+ * of the cypher query result graph. It contains all data from 
+ * a Neo4j node.  
+ * 
  * @author Daniel Murygin daniel.murygin@gmail.com
  */
 public class Node implements IPropertyContainer {
