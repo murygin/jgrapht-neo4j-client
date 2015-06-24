@@ -15,7 +15,7 @@
  * If not, see <http://www.gnu.org/licenses/>.
  * 
  * Contributors:
- *     Daniel Murygin <dm[at]sernet[dot]de> - initial API and implementation
+ *     Daniel Murygin daniel.murygin@gmail.com - initial API and implementation
  ******************************************************************************/
 package org.murygin.neo4j;
 
@@ -25,7 +25,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * @author Daniel Murygin <dm[at]sernet[dot]de>
+ * @author Daniel Murygin daniel.murygin@gmail.com
  */
 public class Node implements IPropertyContainer {
 

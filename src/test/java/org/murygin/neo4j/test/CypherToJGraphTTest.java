@@ -15,7 +15,7 @@
  * If not, see <http://www.gnu.org/licenses/>.
  * 
  * Contributors:
- *     Daniel Murygin <dm[at]sernet[dot]de> - initial API and implementation
+ *     Daniel Murygin daniel.murygin@gmail.com - initial API and implementation
  ******************************************************************************/
 package org.murygin.neo4j.test;
 
@@ -37,7 +37,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 /**
- * @author Daniel Murygin <dm[at]sernet[dot]de>
+ * @author Daniel Murygin daniel.murygin@gmail.com
  */
 public class CypherToJGraphTTest {
     

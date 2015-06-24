@@ -15,7 +15,7 @@
  * If not, see <http://www.gnu.org/licenses/>.
  * 
  * Contributors:
- *     Daniel Murygin <dm[at]sernet[dot]de> - initial API and implementation
+ *     Daniel Murygin daniel.murygin@gmail.com - initial API and implementation
  ******************************************************************************/
 package org.murygin.neo4j;
 
@@ -47,11 +47,12 @@ import com.sun.jersey.api.client.WebResource;
  * To execute a query on Neo4j the REST api is used. REST calls a executed 
  * by Jersey client. JSON results are returned as json-simple objects.
  * 
- * @see http://neo4j.com/
- * @see http://neo4j.com/docs/stable/cypher-query-lang.html
- * @see https://jersey.java.net/
- * @see https://code.google.com/p/json-simple/
- * @author Daniel Murygin <dm[at]sernet[dot]de>
+ * See: http://neo4j.com/
+ * See: http://neo4j.com/docs/stable/cypher-query-lang.html
+ * See: https://jersey.java.net/
+ * See: https://code.google.com/p/json-simple/
+ * 
+ * @author Daniel Murygin daniel.murygin@gmail.com
  */
 public class CypherToJson {
 
@@ -195,7 +196,7 @@ public class CypherToJson {
 
     /**
      * @return The result of the cypher query as json-simple object.
-     * @see https://code.google.com/p/json-simple/
+     * See: https://code.google.com/p/json-simple/
      */
     public JSONObject getJson() {
         return json;

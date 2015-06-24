@@ -15,7 +15,7 @@
  * If not, see <http://www.gnu.org/licenses/>.
  * 
  * Contributors:
- *     Daniel Murygin <dm[at]sernet[dot]de> - initial API and implementation
+ *     Daniel Murygin daniel.murygin@gmail.com - initial API and implementation
  ******************************************************************************/
 package org.murygin.neo4j;
 
@@ -26,7 +26,7 @@ import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
 /**
- * @author Daniel Murygin <dm[at]sernet[dot]de>
+ * @author Daniel Murygin daniel.murygin@gmail.com
  */
 @SuppressWarnings("rawtypes")
 public class JsonResults {

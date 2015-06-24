@@ -15,7 +15,7 @@
  * If not, see <http://www.gnu.org/licenses/>.
  * 
  * Contributors:
- *     Daniel Murygin <dm[at]sernet[dot]de> - initial API and implementation
+ *     Daniel Murygin daniel.murygin@gmail.com - initial API and implementation
  ******************************************************************************/
 package org.murygin.neo4j;
 
@@ -37,14 +37,16 @@ import org.slf4j.LoggerFactory;
  * Getting started:
  * 
  * CypherToJGraphT graphLoader = new CypherToJGraphT();
- * DirectedGraph<Node, Edge> graph = graphLoader.execute("MATCH n-[r]-() RETURN n,r");
+ * graphLoader.setHost("NEO4J_HOST_NAME");
+ * DirectedGraph graph = graphLoader.execute("MATCH n-[r]-() RETURN n,r");
  * 
  * Queries are executed by class {@link CypherToJson}.
  * 
- * @see http://neo4j.com/
- * @see http://neo4j.com/docs/stable/cypher-query-lang.html
- * @see http://jgrapht.org/
- * @author Daniel Murygin <dm[at]sernet[dot]de>
+ * See: http://neo4j.com/
+ * See: http://neo4j.com/docs/stable/cypher-query-lang.html
+ * See: http://jgrapht.org/
+ * 
+ * @author Daniel Murygin daniel.murygin@gmail.com
  */
 public class CypherToJGraphT {
 

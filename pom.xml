@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.murygin</groupId>
   <artifactId>jgrapht-neo4j-client</artifactId>
-  <version>0.0.1-SNAPSHOT</version>
+  <version>0.2-SNAPSHOT</version>
   <name>JGraphT Client for Neo4j</name>
   <description>A Client for Neo4j which creates JGraphT objects from Neo4j output</description>
   <dependencies>
@@ -26,7 +26,7 @@
       <artifactId>slf4j-log4j12</artifactId>
       <version>1.6.4</version>
       <scope>runtime</scope>
-  </dependency>
+    </dependency>
     <dependency>
       <groupId>log4j</groupId>
       <artifactId>log4j</artifactId>
@@ -52,4 +52,11 @@
       </plugin>
     </plugins>
   </build>
+  <distributionManagement>
+    <repository>
+      <id>github.com/murygin/maven-repository</id>
+      <name>GitHub Mavebn Repository</name>
+      <url>file:///home/dm/Dokumente/maven-repository</url>
+    </repository>
+  </distributionManagement>
 </project>
